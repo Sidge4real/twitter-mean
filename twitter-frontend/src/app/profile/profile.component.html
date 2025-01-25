@@ -1,0 +1,30 @@
+<div class="layout">
+    <nav>
+    <app-left-nav></app-left-nav>
+    </nav>
+
+    <!-- main section start -->
+    <main style="position: relative" *ngIf="!Profile">
+        <!-- You could do a loading spinner here -->
+    </main>
+    <main style="position: relative" *ngIf="Profile">
+        <div class="header">
+            <h2 [innerHtml]="Profile.name"></h2>
+        </div>
+
+        <img class="profile_banner" [src]="BannerUrl"/>
+        <img class="profile_avatar" [src]="AvatarUrl"/>
+        <section class="profile">
+            <div class="profile_name" [innerHtml]="Profile.name"></div>
+            <div class="profile_handle" [innerHtml]="Profile.handle"></div>
+            <div class="profile_bio" [innerHtml]="Profile.bio"></div>
+        </section>
+
+        <app-tweets [tweets]="Tweets"></app-tweets>
+
+    </main>
+    <!-- main section end -->
+
+    <aside><app-right-nav></app-right-nav></aside>
+    
+</div>

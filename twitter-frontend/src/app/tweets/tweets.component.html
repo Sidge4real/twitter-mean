@@ -1,0 +1,36 @@
+<section class="posts" *ngFor="let tweet of Tweets; let i = index">
+    <article class="post">
+        <div class="post_profile-image">
+            <img src="/assets/images/avatars/{{tweet.handle}}.png">
+        </div>
+        <div class="post_body">
+            <div class="post_header">
+                <div class="post_header-text">
+                    <h3>{{tweet.profile?.name}}
+                        <span class="header-icon-section">
+                            <span *ngIf="tweet.profile?.verified" class="material-icons post_badge">verified</span><a [routerLink]="tweet.handle">@{{tweet.handle}}</a>
+                        </span>
+                        -
+                        <span>
+                            {{tweet.createdOn | date: 'MMM d, y, HH:mm:ss' }}
+                        </span>
+                    </h3>
+                </div>
+
+                <div class="post_header-description">
+                    {{tweet.text}}
+                </div>
+                
+            </div>
+            <div class="post_footer">
+                <button class="material-icons postButton">chat</button>
+                <button class="material-icons postButton">repeat</button>
+                <button class="material-icons postButton">favorite_border</button>
+                <button class="material-icons postButton">file_upload</button>
+            </div>
+
+        </div>
+
+    </article>
+   
+</section>

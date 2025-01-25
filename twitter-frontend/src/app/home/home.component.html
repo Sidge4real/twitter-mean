@@ -1,0 +1,30 @@
+<div class="layout">
+    <nav>
+        <app-left-nav></app-left-nav>
+    </nav>
+    
+
+    <!-- main section start -->
+    <main>
+        <div class="header">
+            <h2>Home</h2>
+        </div>
+
+        <div class="tweet_box">
+
+            <form method="post" action="/">
+                <div class="tweet_box-input">
+                    <img src="/assets/images/avatars/JonDoe.png" alt="profile image">
+                    <textarea rows="4" cols="40" placeholder="What's happening?" name="text" [(ngModel)]="tweetText"></textarea>
+                    <button [disabled]="Disabled" (click)="submitTweet()">Tweet</button>
+                </div>
+            </form>
+
+        </div>
+
+        <app-tweets [tweets]="Tweets"></app-tweets>
+    </main>
+
+    <aside><app-right-nav></app-right-nav></aside>
+    
+</div>
