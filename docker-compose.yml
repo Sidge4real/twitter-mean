@@ -3,6 +3,8 @@ services:
     build:
       context: ./twitter-frontend
       dockerfile: Dockerfile
+    ports:
+      - 80:80
 
   api:
     build:
