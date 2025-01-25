@@ -3,8 +3,19 @@ services:
     build:
       context: ./twitter-frontend
       dockerfile: Dockerfile
-    ports:
-      - 80:80
+    labels:
+      - "traefik.http.routers.frontend.rule=Host(`twitter-clone.lukasvanderspiegel.be`)"
+      - "traefik.http.routers.frontend.tls.certresolver=myresolver"
+      
+      - "traefik.http.routers.frontend-api.rule=Host(`twitter-clone.lukasvanderspiegel.be`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.frontend-api.tls.certresolver=myresolver"
+      - "traefik.http.routers.frontend-api.entrypoints=web,websecure"
+      - "traefik.http.routers.frontend-api.service=api-twitter-mean"
+      # /api/tweets (router) --> /tweets (backend)
+      - "traefik.http.routers.frontend-api.middlewares=strip-api-prefix"
+    # vervangen door traefik:
+    # ports:
+    #   - 80:80
 
   api:
     build:
@@ -23,3 +34,7 @@ services:
 
 volumes:
   db-data:
+
+networks:
+  default:
+    name: twitter-mean
