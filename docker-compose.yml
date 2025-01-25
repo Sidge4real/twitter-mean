@@ -1,0 +1,23 @@
+services:
+  frontend:
+    build:
+      context: ./twitter-frontend
+      dockerfile: Dockerfile
+
+  api:
+    build:
+      context: ./twitter-api
+      dockerfile: Dockerfile
+  
+  db:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    env_file:
+      - .env
+    volumes:
+      - db-data:/data/db
+
+volumes:
+  db-data:

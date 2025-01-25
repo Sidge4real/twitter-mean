@@ -4,7 +4,8 @@ import * as twitterJson from "../twitter.json";
 import { MongoClient } from "mongodb";
 
 // const uri = "mongodb://twitter:twitter@localhost:27017/?authSource=admin&readPreference=primary&ssl=false&directConnection=true";
-const uri = "mongodb://localhost:27017";
+// const uri = "mongodb://localhost:27017";
+const uri = "mongodb://db:27017"; // service-naam (docker)
 @Injectable()
 export class TwitterService {
     private client = new MongoClient(uri);
